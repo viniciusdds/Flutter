@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'customw.dart';
+import 'otherpage.dart';
 
 void main(){
-  runApp(new MaterialApp(home: new Application10(),));
+  runApp(new MaterialApp(home: new Application20(),));
 }
 
 //Aula 2 StatelessWidget
@@ -347,6 +348,376 @@ class Application10 extends StatelessWidget{
       title: 'Custom Widgets',
       home: new Scaffold(
         body: new customwidgets(),
+      ),
+    );
+  }
+}
+
+class Application11 extends StatefulWidget {
+  @override
+  _ApplicationState11 createState() => new _ApplicationState11();
+}
+
+class _ApplicationState11 extends State<Application11>{
+
+  String ptext = '';
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: 'Aplicação Fictícia',
+      home: new Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.green,
+          title: new Text("Aplicação Fictícia"),
+        ),
+        body: new Column(
+          children: <Widget>[
+            new TextField(
+                onSubmitted: (String txt){
+                  setState((){
+                    ptext = txt;
+                  });
+                },
+              decoration: new InputDecoration(hintText: 'Digite aqui...',labelText: 'Nome Completo'),
+            ),
+            new Text(ptext),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Application12 extends StatefulWidget {
+  @override
+  _ApplicationState12 createState() => new _ApplicationState12();
+}
+
+class _ApplicationState12 extends State<Application12> {
+
+  String ptext = '';
+  void method1(value){
+    setState((){
+      //ptext ='you clicked raised button';
+      ptext = value;
+    });
+
+  }
+
+//  Widget build(BuildContext context) {
+//    return new Scaffold(
+//        body: new Center(
+//          //child:  new RaisedButton(onPressed: (){method1();},child: new Text(ptext),),
+//
+//        )
+//    );
+//  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: "Aplicação Fictícia",
+      home: new Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.green,
+          title: new Text("Aplicação Fictícia"),
+        ),
+        body: new Column(
+          children: <Widget>[
+            new RaisedButton(
+              onPressed: ()
+              {
+              method1('Você pressionou este botão');
+              },
+
+              child: new Text('Raised Button'),),
+            new FlatButton(onPressed: null, child: new Text('Flat Button'),),
+            new Text(ptext)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Application13 extends StatefulWidget {
+  @override
+  _ApplicationState13 createState() => new _ApplicationState13();
+}
+
+class _ApplicationState13 extends State<Application13> {
+
+  bool checkvalue = false;
+  void method3(val){
+    setState((){
+      checkvalue = val;
+      print('$checkvalue');
+    });
+
+  }
+
+  bool cbool = false;
+
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        body: new Center(
+          child:  new Checkbox(
+              value: cbool,
+              onChanged: (bool cb){
+                setState(() {
+                  cbool = cb;
+                  print(cbool);
+                });
+              }),
+        )
+    );
+  }
+}
+
+class Application14 extends StatefulWidget {
+  @override
+  _ApplicationState14 createState() => new _ApplicationState14();
+}
+
+class _ApplicationState14 extends State<Application14> {
+
+  int  rvalue = 0;
+  void method1(val){
+    setState((){
+      rvalue = val;
+      print('$rvalue');
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: "Aplicação Fictícia",
+      home: new Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.green,
+          title: new Text("Aplicação Fictícia"),
+        ),
+        body: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Radio(value: 1, groupValue: rvalue,  onChanged: (int rval){method1(rval);}),
+              new Radio(value: 2, groupValue: rvalue,  onChanged: (int rval){method1(rval);}),
+              new Radio(value: 3, groupValue: rvalue,  onChanged: (int rval){method1(rval);}),
+            ],
+          ),
+        )
+      )
+    );
+  }
+}
+
+class Application15 extends StatefulWidget {
+  @override
+  _ApplicationState15 createState() => new _ApplicationState15();
+}
+
+class _ApplicationState15 extends State<Application15> {
+
+  double dtext = 2.0;
+  void method1(value){
+    setState(() {
+      dtext = value;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+        title: "Aplicação Fictícia",
+        home: new Scaffold(
+            appBar: new AppBar(
+              backgroundColor: Colors.green,
+              title: new Text("Aplicação Fictícia"),
+            ),
+            body: new Center(
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+                    new Slider(
+                        value: dtext,
+                        min: 1.0,
+                        max: 10.0,
+                        onChanged: (double dval){
+                          method1(dval.roundToDouble());
+                        }
+                    ),
+                  new Text('valor : $dtext'),
+
+                ],
+              ),
+            )
+        )
+    );
+  }
+}
+
+class Application16 extends StatefulWidget{
+  @override
+  _ApplicationState16 createState() => new _ApplicationState16();
+}
+
+class _ApplicationState16 extends State<Application16>{
+
+  bool sbool = false;
+
+  Widget build(BuildContext context){
+    return new Scaffold(
+      body: new Center(
+        child: new Switch(
+            value: sbool,
+            onChanged: (bool sb){
+              setState(() {
+                sbool = sb;
+                print(sbool);
+              });
+            }
+        ),
+      ),
+    );
+  }
+}
+
+class Application17 extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Scaffold(
+      appBar: new AppBar(title: new Text('Drawer'),),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text('Vinicius Damasceno'), 
+              accountEmail: new Text('vinicius@gmail.com'),
+              currentAccountPicture: new CircleAvatar(backgroundColor: Colors.black26, child: new Text("V"),),
+              decoration: new BoxDecoration(color: Colors.orange),
+              otherAccountsPictures: <Widget>[
+                new CircleAvatar(backgroundColor: Colors.black26, child: new Text("D"),),
+                new CircleAvatar(backgroundColor: Colors.black26, child: new Text("A"),),
+              ],
+            ),
+            new ListTile(title: new Text('Page 1'),
+              trailing: new Icon(Icons.arrow_forward),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new op('Page 1'))),
+            ),
+            new ListTile(title: new Text('Page 2'),
+              trailing: new Icon(Icons.arrow_forward),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=>new op('Page 2'))),
+            ),
+            new ListTile(title: new Text('Close'), trailing: new Icon(Icons.arrow_forward), onTap: (){Navigator.pop(context);},),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Application18 extends StatefulWidget{
+  @override
+  _ApplicationState18 createState() => new _ApplicationState18();
+}
+
+class _ApplicationState18 extends State<Application18>{
+
+  final GlobalKey<ScaffoldState> _skey = new GlobalKey<ScaffoldState>();
+
+  void method1(){
+    _skey.currentState.showSnackBar(new SnackBar(content: new Text('SnackBar Ativado')));
+  }
+
+  Widget build(BuildContext context){
+    return new Scaffold(
+      key: _skey,
+      body: new Center(
+        child: new RaisedButton(
+            onPressed: (){method1();},
+            child: new Text('SnackBar Ativado'),
+        ),
+      ),
+    );
+  }
+}
+
+class Application19 extends StatefulWidget{
+  @override
+  _ApplicationState19 createState() => new _ApplicationState19();
+}
+
+class _ApplicationState19 extends State<Application19>{
+
+  void dialog(){
+    showDialog(
+      context: context,
+      child: new AlertDialog(
+        title: new Text('Alerta'),
+        content: new Text('Você morrerá se você apertar o botão de fechar'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.close), onPressed: (){Navigator.pop(context);})
+        ],
+      )
+    );
+  }
+
+  Widget build(BuildContext context){
+    return new Scaffold(
+      body: new Center(
+        child: new RaisedButton(
+            onPressed: (){dialog();},
+          child: new Text('Activate AlertDialog'),
+        ),
+      ),
+    );
+  }
+}
+
+class Application20 extends StatefulWidget{
+  @override
+  _ApplicationState20 createState() => new _ApplicationState20();
+}
+
+class _ApplicationState20 extends State<Application20>{
+  
+  SimpleDialog _sb;
+  void Dialog(){
+    _sb = new SimpleDialog(
+      title: new Text('Escolha um'),
+      children: <Widget>[
+        new SimpleDialogOption(
+          child: new Text('Sim'),
+          onPressed: (){print('Sim');},
+        ),
+        new SimpleDialogOption(
+          child: new Text('Não'),
+          onPressed: (){print('Não');},
+        ),
+        new SimpleDialogOption(
+          child: new Text('Fechar'),
+          onPressed: (){Navigator.pop(context);},
+        )
+      ],
+    );
+
+    showDialog(context: context, child: _sb);
+  }
+  
+  Widget build(BuildContext context){
+    return new Scaffold(
+      body: new Center(
+        child: new RaisedButton(
+          onPressed: (){
+          Dialog();
+        },
+          child: new Text('Mostra um Janela Simples'),
+        ),
       ),
     );
   }
